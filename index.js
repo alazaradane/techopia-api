@@ -13,14 +13,18 @@ app.use(cors({
     credentials: true, 
 }))
 
+
+
+
 app.use('/api/auth', authRoutes)
+
 // app.use('/api/projects', projectRoutes)
 // app.use('/api/blogs', blogRoutes)
 // app.use('/api/events', eventRoutes)
 // app.use('/api/newsletter', newsletterRoutes)
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, '../tech-api/public/upload')
+      cb(null, path.join(__dirname, '../tech-admin/public/upload'))
     },
     filename: function (req, file, cb) {
       cb(null, Date.now()+file.originalname)
