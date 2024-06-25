@@ -1,6 +1,7 @@
 import express from 'express'
 import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js'
+import profileRoutes from './routes/profile.js'
 import cors from 'cors'
 import multer from 'multer';
 
@@ -17,6 +18,7 @@ app.use(cors({
 
 
 app.use('/api/auth', authRoutes)
+app.use('/api/profile', profileRoutes)
 
 // app.use('/api/projects', projectRoutes)
 // app.use('/api/blogs', blogRoutes)
