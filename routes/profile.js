@@ -1,9 +1,10 @@
 import express from 'express'
-import {getProfile} from '../controller/profile.js'
-const Router = express.Router();
+import {getProfile, getUsers} from '../controller/profile.js'
+const router = express.Router();
 
-Router.get('/:id', getProfile)
+router.get('/users', getUsers)
+router.get('/:id', getProfile)
 
 
 
-export default Router
+export default router

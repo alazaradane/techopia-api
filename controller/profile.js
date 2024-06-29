@@ -10,4 +10,18 @@ export const getProfile = (req,res)=>{
 }
 
 
+export const getUsers = (req, res) => {
+    const q = "SELECT * FROM users";
+    
+    db.query(q,(err, data) => {
+      if (err) {
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+      if (data.length === 0) {
+        return res.status(404).json({ message: "No Users found"})
+      }
+      return res.status(200).json(data);
+    });
+  };
+
 

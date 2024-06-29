@@ -4,6 +4,11 @@ import jwt from 'jsonwebtoken'
 import multer from 'multer';
 import path from 'path'
 import { fileURLToPath } from 'url';
+import cors from 'cors'
+import express from 'express'
+
+const router = express.Router()
+router.use(cors())
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename)
@@ -136,3 +141,5 @@ export const login = (req, res) => {
       secure: true,  
     }).status(200).json("User has been logged out.");
   };
+
+  
