@@ -24,4 +24,12 @@ export const getUsers = (req, res) => {
     });
   };
 
-
+export const deleteUser = (req,res)=>{
+  const {id} = req.params
+  const q = "DELETE FROM users WHERE id=?"
+  db.query(q,[id],(err,data)=>{
+    if(err) return res.status(500).json('Internal Server Error')
+    if(data.length===0) return res.status(404).json('User not found')
+      return res.status(200).json('User deleted')
+  })
+}
