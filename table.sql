@@ -1,11 +1,11 @@
 CREATE TABLE projects (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    text VARCHAR(255) NOT NULL,
+    detail VARCHAR(255) NOT NULL,
     icon VARCHAR(255),
     image VARCHAR(255),
-    technology JSON
+    technology VARCHAR(255)
+    create_date date NOT NULL
 );
 
 
