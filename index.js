@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
 import project from './routes/project.js'
+import event from './routes/event.js'
 import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
@@ -28,6 +29,7 @@ app.use(cors({
 app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/project', project)
+app.use('/api/event', event)
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

@@ -12,11 +12,11 @@ CREATE TABLE projects (
 
 CREATE TABLE events (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    event_title VARCHAR(255) NOT NULL,
-    description TEXT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    detail TEXT NOT NULL,
     icon VARCHAR(255),
     image VARCHAR(255),
-    form_link VARCHAR(255)
+    create_date date NOT NULL
 );
 
 CREATE TABLE blogs (
