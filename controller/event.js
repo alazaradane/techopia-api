@@ -72,7 +72,7 @@ export const updateEvent = (req, res) => {
       const imageFile = req.files['image'] ? req.files['image'][0].filename : null;
       const create_date = new Date();
   
-      const q = "UPDATE  SET events `title`=?, `detail`=?, `icon`=?, `image`=?, `create_date`=? WHERE `id`=?";
+      const q = "UPDATE events SET  `title`=?, `detail`=?, `icon`=?, `image`=?, `create_date`=? WHERE `id`=?";
       const values = [title, detail, iconFile, imageFile, create_date, id];
   
       db.query(q, values, (err, data) => {
