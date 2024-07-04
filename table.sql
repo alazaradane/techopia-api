@@ -23,10 +23,9 @@ CREATE TABLE blogs (
     id INT AUTO_INCREMENT PRIMARY KEY,
     img VARCHAR(255) NOT NULL,
     title VARCHAR(255) NOT NULL,
-    preview VARCHAR(255) NOT NULL,
-    detail VARCHAR(255) NOT NULL,
-    category VARCHAR(50) NOT NULL,
-    post_date DATE NOT NULL
+    detail TEXT NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    create_date DATE NOT NULL
 );
 
 CREATE TABLE users (

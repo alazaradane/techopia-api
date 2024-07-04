@@ -6,6 +6,7 @@ import authRoutes from './routes/auth.js';
 import profileRoutes from './routes/profile.js';
 import project from './routes/project.js'
 import event from './routes/event.js'
+import blog from './routes/blog.js'
 import cors from 'cors';
 import multer from 'multer';
 import path from 'path';
@@ -30,6 +31,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/project', project)
 app.use('/api/event', event)
+app.use('/api/blog', blog)
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
