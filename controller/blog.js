@@ -29,6 +29,15 @@ export const getBlog = (req, res) => {
       res.status(200).json(data);
     });
   };
+
+export const getoneBlog = (req, res) => {
+    const {id}= req.params
+    const q = "SELECT * FROM blogs WHERE id=?";
+    db.query(q,[id], (err, data) => {
+      if (err) return res.status(500).json(err);
+      res.status(200).json(data);
+    });
+  };
   
 
 export const addBlog = (req, res) => {
