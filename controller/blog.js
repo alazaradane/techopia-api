@@ -59,28 +59,40 @@ export const addBlog = (req, res) => {
 };
 
 export const updateBlog = (req, res) => {
-    const { id } = req.params;
-  
-    upload.fields([{ name: 'image', maxCount: 1 }])(req, res, (err) => {
+  const { id } = req.params;
+
+  upload.fields([{ name: 'image', maxCount: 1 }])(req, res, (err) => {
+    if (err) {
+      console.error('Error during file upload:', err);
+      return res.status(500).json({ message: 'File upload error', error: err });
+    }
+
+    const { title, detail, category } = req.body;
+    const imageFile = req.files['image'] ? req.files['image'][0].filename : null;
+    const create_date = new Date();
+
+    let q;
+    let values;
+
+    if (imageFile) {
+      q = "UPDATE blogs SET `title`=?, `detail`=?, `category`=?, `image`=?, `create_date`=? WHERE `id`=?";
+      values = [title, detail, category, imageFile, create_date, id];
+    } else {
+      q = "UPDATE blogs SET `title`=?, `detail`=?, `category`=?, `create_date`=? WHERE `id`=?";
+      values = [title, detail, category, create_date, id];
+    }
+
+    db.query(q, values, (err, data) => {
       if (err) {
-        return res.status(500).json(err);
+        console.error('Error during database query:', err);
+        return res.status(500).json({ message: 'Database query error', error: err });
       }
-  
-      const { title, detail, category } = req.body;
-      const imageFile = req.files['image'] ? req.files['image'][0].filename : null;
-      const create_date = new Date();
-  
-      const q = "UPDATE blogs SET  `title`=?, `detail`=?, `category`=?, `image`=?, `create_date`=? WHERE `id`=?";
-      const values = [title, detail, category, imageFile, create_date, id];
-  
-      db.query(q, values, (err, data) => {
-        if (err) return res.status(500).json(err);
-        return res.status(200).json('Blog updated successfully');
-      });
+      return res.status(200).json('Blog updated successfully');
     });
-  };
-  
-  
+  });
+};
+
+
 export const deleteBlog = (req, res) => {
     const q = "DELETE FROM blogs WHERE id=?";
     db.query(q, [req.params.id], (err, data) => {
